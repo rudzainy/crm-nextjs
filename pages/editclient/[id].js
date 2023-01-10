@@ -14,7 +14,7 @@ const EditClient = () => {
     } = router;
 
     useEffect(() => {
-        // obtiene el cliente a editar
+        // gets the client to edit
         axiosClient.get(`users?id=${id}`).then((res) => {
             setClient(res.data[0]);
         });

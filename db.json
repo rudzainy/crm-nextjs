@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Luis Cortes",
+      "name": "Ace Admin",
       "email": "admin@admin.com",
       "password": "1234",
       "role": "seller",
@@ -18,8 +18,8 @@
     },
     {
       "id": 2,
-      "name": "Marta Peres",
-      "email": "marta@admin.com",
+      "name": "Ace Temp Admin",
+      "email": "tempadmin@admin.com",
       "password": "1234",
       "role": "seller",
       "clients": [

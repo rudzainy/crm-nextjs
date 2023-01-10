@@ -19,15 +19,15 @@ const NewClient = () => {
             password: '',
         },
         validationSchema: Yup.object({
-            name: Yup.string().required('El nombre es obligatorio'),
-            company: Yup.string().required('El nombre de la compañia es obligatorio'),
-            email: Yup.string().email('Email invalido').required('El email es obligatorio'),
-            password: Yup.string().required('La contraseña es obligatoria'),
+            name: Yup.string().required('Name is required'),
+            company: Yup.string().required('Company name is required'),
+            email: Yup.string().email('Invalid email').required('Email is required'),
+            password: Yup.string().required('Pssword is required'),
         }),
         onSubmit: async (valores) => {
             try {
                 const seller = getCurrentSeller();
-                // crea un cliente automaticamente asignado al vendedor logueado
+                // creates a customer automatically assigned to the logged in seller
                 const client = {
                     ...valores,
                     id: uuidv4(),
@@ -36,7 +36,7 @@ const NewClient = () => {
                 };
                 const respose = await axiosClient.post('users', client);
                 console.log(respose);
-                Swal.fire('Added!', 'El cliente ha sido actualizado', 'success').then((res) => {
+                Swal.fire('Added!', 'The client has been updated', 'success').then((res) => {
                     if (res.value) router.push('/');
                 });
             } catch (error) {
@@ -48,7 +48,7 @@ const NewClient = () => {
 
     return (
         <Layout>
-            <h1 className="text-2xl text-gray-800 font-light">Nuevo Cliente</h1>
+            <h1 className="text-2xl text-gray-800 font-light">New Client</h1>
 
             <div className="flex justify-center mt-5">
                 <div className="w-full max-w-lg">

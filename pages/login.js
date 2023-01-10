@@ -17,13 +17,14 @@ export default function Home() {
             password: '',
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Email invalido').required('El email es obligatorio'),
-            password: Yup.string().required('La contraseña es obligatoria'),
+            email: Yup.string().email('Invalid email').required('Email is required'),
+            password: Yup.string().required('Password is required'),
         }),
         onSubmit: async (data) => {
             const users = await axiosClient.get('users');
 
-            // validacion simple para ver si los datos son correctos
+            // simple validation to see if the data is correct
+            // TODO: use SSO
             const user = users.data.filter(
                 (user) => user.email === data.email && user.password === data.password
             );
@@ -39,11 +40,11 @@ export default function Home() {
                 localStorage.setItem('userData', JSON.stringify(userAuth));
                 router.push('/');
             }
-            // hay algun dato incorrecto
+            // handle incorrect login
             else {
                 setMessage({
                     status: true,
-                    msg: 'Contraseña incorrecta',
+                    msg: 'Incorrect password',
                 });
                 localStorage.setItem('isAuth', 'false');
                 setTimeout(() => {
@@ -81,7 +82,7 @@ export default function Home() {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="email"
                                 type="email"
-                                placeholder="Email Usuario"
+                                placeholder="User Email"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email}
